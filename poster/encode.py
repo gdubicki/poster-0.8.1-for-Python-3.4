@@ -91,7 +91,7 @@ class MultipartParam(object):
                 self.filename = filename.encode("ascii", "xmlcharrefreplace")
             else:
                 self.filename = str(filename)
-            self.filename = self.filename.encode("string_escape").\
+                self.filename = self.filename.encode("string_escape").\
                     replace('"', '\\"')
         self.filetype = _strify(filetype)
 
@@ -235,7 +235,7 @@ class MultipartParam(object):
             yield block
             if self.cb:
                 self.cb(self, current, total)
-            last_block = ""
+            last_block = b""
             encoded_boundary = "--%s" % encode_and_quote(boundary)
             boundary_exp = re.compile("^%s$" % re.escape(encoded_boundary),
                     re.M)
@@ -248,7 +248,7 @@ class MultipartParam(object):
                         self.cb(self, current, total)
                     break
                 last_block += block
-                if boundary_exp.search(last_block):
+                if boundary_exp.search(last_block.decode("utf-8", errors='ignore')):
                     raise ValueError("boundary found in file data")
                 last_block = last_block[-len(encoded_boundary)-2:]
                 current += len(block)

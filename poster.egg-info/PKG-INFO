@@ -7,6 +7,7 @@ Author: Chris AtLee
 Author-email: chris@atlee.ca
 License: MIT
 Download-URL: http://atlee.ca/software/poster/dist/0.8.1
+Description-Content-Type: UNKNOWN
 Description: The modules in the Python standard library don't provide a way to upload large
         files via HTTP without having to load the entire file into memory first.
         
